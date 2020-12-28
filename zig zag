@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+const int n = 6;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int i, j, x;
+    int stb = n;
+    int str = 0;
+    char ch = ' ';
+    int a = 0;
+    double mass[n][n];
+    do
+    {
+        for (i = 1; i < n; i++)
+        {
+            cout << endl;
+            for (j = 1; j < n; j++)
+            {
+                mass[i][j] = 0;
+                cout << " " << mass[i][j];
+            }
+        }
+        cout << "\nЕсли вы хоите заполнить массив по диагонали нажмите 1." << "\nЕсли вы хотите заполнить масси по обратной диагонали нажмите 2.";
+        cout << "\nЕсли вы хотите заполнить массив зигзагом нажмите 3." << "\nЕсли вы хоите заполнить всё кроме диагоналей массива нажмите 4: ";
+        cin >> x;
+        switch (x)
+        {
+        case 1:
+
+            for (i = 1; i < n; i++)
+            {
+                cout << endl;
+                for (j = 1; j < n; j++)
+                {
+                    if (i == j)
+                        mass[i][j] = 1;
+                    cout << " " << mass[i][j];
+                }
+            }
+            break;
+
+
+        case 2:
+            for (i = 1; i < n; i++)
+            {
+                stb--; str++;
+                cout << endl;
+                for (j = 1; j < n; j++)
+                {
+                    if (str == i && stb == j)
+                        mass[i][j] = 1;
+                    cout << " " << mass[i][j];
+                }
+            }
+            break;
+
+
+        case 3:
+            for (i = 1; i < n; i++)
+            {
+                if (i % 2 == 0)
+                    a++;
+                cout << endl;
+                for (j = 1; j < n; j++)
+                {
+
+                    if (i % 2 != 0)
+                        mass[i][j] = 1;
+                    if (i % 2 == 0)
+                    {
+                        if (a % 2 == 0)
+                            mass[i][n - 1] = 1;
+                        else
+                            mass[i][n - (n - 1)] = 1;
+
+
+                    }
+                    cout << " " << mass[i][j];
+
+                }
+            }
+            break;
+
+        case 4:
+            for (i = 1; i < n; i++)
+            {
+                stb--; str++;
+                cout << endl;
+                for (j = 1; j < n; j++)
+                {
+                    mass[i][j] = 1;
+                    if ((str == i && stb == j) || (i == j))
+                        mass[i][j] = 0;
+                    cout << " " << mass[i][j];
+                }
+            }
+            break;
+        }
+        cout << "\nЕсли вы хоите продолжить работу программы нажмите y, если хотите прекратить работу программы напишите n.";
+        cin >> ch;
+    } while (ch != 'n');
+
+
+
+    return(0);
+}
